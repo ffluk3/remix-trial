@@ -1270,3 +1270,5 @@ export const data: RandomData[] = [
     alphanumeric: "KZD33VLC2XD",
   },
 ];
+
+export const dataSize = data.length;

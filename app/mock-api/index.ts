@@ -1,11 +1,12 @@
-import { data } from "./fake-data";
+import { data, dataSize } from "./fake-data";
 
 interface Props {
   page: number;
   limit: number;
 }
 export const getTableData = async ({ page, limit }: Props) => {
-  const pageSize = data.length / 4;
-  const cursor = pageSize * (page - 1);
+  const maxNumPages = dataSize / limit;
+  const pageSize = dataSize / maxNumPages;
+  const cursor = pageSize * page;
   return data.slice(cursor, cursor + (limit || pageSize));
 };

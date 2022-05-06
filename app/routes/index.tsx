@@ -3,10 +3,17 @@ import { useLoaderData } from "@remix-run/react";
 import { getTableData } from "~/mock-api";
 import { Table } from "../components/Table";
 
+const msDelay = (timeInMs: number) =>
+  new Promise((res) => {
+    setTimeout(res, timeInMs);
+  });
+
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
-  const page = parseInt(url.searchParams.get("page") || "1");
-  const limit = parseInt(url.searchParams.get("limit") || "");
+  const page = parseInt(url.searchParams.get("page") || "0");
+  const limit = parseInt(url.searchParams.get("limit") || "10");
+
+  await msDelay(Math.random() * 2000);
   return json(await getTableData({ page, limit }));
 };
 
