@@ -2,11 +2,8 @@ import { LoaderFunction, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getTableData } from "~/mock-api";
 import { Table } from "../components/Table";
-
-const msDelay = (timeInMs: number) =>
-  new Promise((res) => {
-    setTimeout(res, timeInMs);
-  });
+import { msDelay } from "~/mock-api/ms-delay";
+import { Layout } from "~/components/Layout";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -20,12 +17,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Index() {
   const rowData = useLoaderData();
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+    <Layout>
       <h1>
         In Progress: Remix demo of server-side pagination tied to native form
         handling
       </h1>
       <Table data={rowData} />
-    </div>
+    </Layout>
   );
 }
