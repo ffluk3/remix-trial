@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { AppBarProps } from "@mui/material";
 import { Link } from "@remix-run/react";
 
@@ -21,10 +20,10 @@ interface HeaderPropsT extends AppBarProps {
 
 const pages = [
   {
-    label: "Form Demo",
-    route: "/form",
+    label: "Login",
+    route: "/login",
   },
-  { label: "Table Demo", route: "/" },
+  { label: "Table", route: "/table" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 

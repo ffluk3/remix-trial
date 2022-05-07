@@ -8,13 +8,13 @@ import { Layout } from "~/components/Layout";
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get("page") || "0");
-  const limit = parseInt(url.searchParams.get("limit") || "10");
+  const limit = parseInt(url.searchParams.get("limit") || "5");
 
   await msDelay(Math.random() * 2000);
   return json(await getTableData({ page, limit }));
 };
 
-export default function Index() {
+export default function TablePage() {
   const rowData = useLoaderData();
   return (
     <Layout>
