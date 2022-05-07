@@ -3,7 +3,6 @@ import { useLoaderData } from "@remix-run/react";
 import { getTableData } from "~/mock-api";
 import { Table } from "../components/Table";
 import { msDelay } from "~/mock-api/ms-delay";
-import { Layout } from "~/components/Layout";
 import { getSession } from "~/sessions";
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -24,12 +23,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function TablePage() {
   const rowData = useLoaderData();
   return (
-    <Layout>
+    <>
       <h1>
         In Progress: Remix demo of server-side pagination tied to native form
         handling
       </h1>
       <Table data={rowData} />
-    </Layout>
+    </>
   );
 }

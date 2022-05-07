@@ -162,6 +162,7 @@ export const Header: React.FC<HeaderPropsT> = ({ name }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <Typography textAlign="center">Hello, $username</Typography>
               <MenuItem key="logout" onClick={handleCloseUserMenu}>
                 <Form action="/logout">
                   <Button type="submit">
