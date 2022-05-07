@@ -3,6 +3,8 @@ import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 import createEmotionCache from "./theme/create-emotion-cache";
 import { CacheProvider } from "@emotion/react";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "~/theme";
 
 const serverSideCache = createEmotionCache();
 
@@ -14,7 +16,9 @@ export default function handleRequest(
 ) {
   let markup = renderToString(
     <CacheProvider value={serverSideCache}>
-      <RemixServer context={remixContext} url={request.url} />
+      <ThemeProvider theme={theme}>
+        <RemixServer context={remixContext} url={request.url} />
+      </ThemeProvider>
     </CacheProvider>
   );
 
