@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { AppBarProps } from "@mui/material";
-import { Link } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 
 interface HeaderPropsT extends AppBarProps {
   name: string;
@@ -20,12 +20,11 @@ interface HeaderPropsT extends AppBarProps {
 
 const pages = [
   {
-    label: "Login",
-    route: "/login",
+    label: "Home",
+    route: "/",
   },
   { label: "Table", route: "/table" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const Header: React.FC<HeaderPropsT> = ({ name }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -163,11 +162,13 @@ export const Header: React.FC<HeaderPropsT> = ({ name }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key="logout" onClick={handleCloseUserMenu}>
+                <Form action="/logout">
+                  <Button type="submit">
+                    <Typography textAlign="center">Logout</Typography>
+                  </Button>
+                </Form>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

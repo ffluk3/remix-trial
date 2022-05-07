@@ -1,11 +1,18 @@
-import { LoaderFunction, json } from "@remix-run/node";
+import { LoaderFunction, json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getTableData } from "~/mock-api";
 import { Table } from "../components/Table";
 import { msDelay } from "~/mock-api/ms-delay";
 import { Layout } from "~/components/Layout";
+import { getSession } from "~/sessions";
 
 export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  console.log(session.data);
+
+  if (!session.get("username")) {
+    return redirect("/login");
+  }
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get("page") || "0");
   const limit = parseInt(url.searchParams.get("limit") || "5");
